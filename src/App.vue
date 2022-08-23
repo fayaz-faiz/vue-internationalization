@@ -1,54 +1,83 @@
 <template>
     <div id="app">
+        <h1>{{ $t('Traslateapp') }}</h1>
+        <div class="locale-changer">
+            <label>Select your language : </label>
+            <select v-model="$i18n.locale">
+                <option v-for="locale in languages" :key="`locale-${locale}`" :value="locale.language">{{
+                        $t(locale.title)
+                }}
+                </option>
+            </select>
+        </div>
+        <br><br>
         <div>
             <button v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">
-                <flag :iso="entry.flag" v-bind:squared=false /> {{entry.title}}
+                {{ $t(entry.title) }}
             </button>
         </div>
 
-        <img alt="Vue logo" src="./assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+
+        <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+        <HelloWorld />
     </div>
 </template>
 
 <script>
-    import HelloWorld from './components/HelloWorld.vue';
-    import i18n from '@/plugins/i18n';
+import HelloWorld from './components/HelloWorld.vue';
+import i18n from '@/plugins/i18n';
 
-    export default {
-        name: 'app',
-        components: {
-            HelloWorld
+export default {
+    name: 'app',
+    components: {
+        HelloWorld,
+
+    },
+    data() {
+        return {
+            selected: 'Select Your Language',
+            languages: [
+                { language: 'en', title: 'English' },
+                { language: 'es', title: 'japanese' }
+            ],
+            // currentForm: { ideaCode: 'en', title: 'English' }
+        };
+    },
+    methods: {
+        changeLocale(locale) {
+            i18n.locale = locale;
         },
-        data() {
-            return {
-                languages: [
-                    { flag: 'us', language: 'en', title: 'English' },
-                    { flag: 'es', language: 'es', title: 'Español' }
-                ]
-            };
-        },
-        methods: {
-            changeLocale(locale) {
-                i18n.locale = locale;
-            }
-        }
+        // setCodeAndLabelForForm(selectedIndex) {
+        //     var selectedIdea = this.ideas[selectedIndex];
+        //     this.currentForm = { ideaCode: selectedIdea.language, text: selectedIdea.title };
+        //     console.log(currentForm.ideaCode);
+        // }
     }
+}
 </script>
 
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-    button {
-        padding: 15px;
-        border: 1px solid green;
-        font-size: 18px;
-        margin: 15px;
-    }
+<style scoped>
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #171e25;
+    /* background-color: rgb(209, 206, 168); */
+}
+
+button {
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 15px;
+    font-size: 18px;
+    margin: 15px;
+}
+
+.main {
+    top: 0px;
+    position: sticky;
+    /* float: right; */
+}
 </style>

@@ -1,64 +1,113 @@
 <template>
     <div class="hello">
-        <h1>{{ $t('welcomeMsg') }}</h1>
-        <p>
-            {{ $t('guide') }}<br>
-            {{ $t('checkout') }}
-            <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-        </p>
-        <h3>{{ $t('plugins') }}</h3>
-        <ul>
-            <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank"
-                   rel="noopener">babel</a></li>
-            <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank"
-                   rel="noopener">eslint</a></li>
-        </ul>
-        <h3>{{ $t('links') }}</h3>
-        <ul>
-            <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-            <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-            <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-            <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-            <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-        </ul>
-        <h3>{{ $t('ecosystem') }}</h3>
-        <ul>
-            <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-            <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-            <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank"
-                   rel="noopener">vue-devtools</a></li>
-            <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-            <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-        </ul>
+        <form action="/action_page.php">
+            <label for="fname">{{ $t('fName') }}</label> 
+            <input class='main' type="text" id="fname" v-model="post.fName" name="fname" data-toggle="tooltip"
+                data-placement="top" :title="$t('tooltip')" :placeholder="$t('fNamePlaceholder')"><br><br>
+            <label for="lname">{{ $t('lName') }}</label>
+            <input class='main' type="text" id="lname" name="lname" v-model="post.lName" :placeholder="$t('lNamePlaceholder')"><br><br>
+            <label for="country">{{ $t('country') }}</label> 
+            <select class='main' id="country" name="country" v-model="post.country">
+                 <option disabled value="">{{ $t('selectedCountry') }}</option>
+                <option value="India">{{ $t('India') }}</option>
+                <option value="canada">{{ $t('Canada') }}</option>
+                <option value="usa">{{ $t('USA') }}</option>
+            </select> <br><br>
+            <!-- <abc>hello</abc> -->
+            <abc>{{$t('abc')}}</abc>
+            <label>{{ $t('Textarea') }} </label>
+            <textarea v-model="post.textarea" class='main' :placeholder="$t('fNamePlaceholder')" rows='5' cols="20" /><br><br>
+            <div class="container">
+                <img src="https://www.w3schools.com/tags/img_girl.jpg" alt="Girl in a jacket" width="350" height="300">
+                <div class="overlay">
+                    <!-- <div class="text">Hello World</div> -->
+                    <h1>{{ $t('fayaz') }}</h1>
+                </div>
+            </div>
+        </form>
+        <button @click="submit">{{ $t('submitbtn') }}</button>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'HelloWorld',
-        props: {
-            msg: String
+export default {
+    data() {
+        return {
+            post:{
+                fName:'',
+                lName:'',
+                country:'',
+                textarea:'',
+            }
+
+        }
+    },
+    name: 'HelloWorld',
+    props: {
+        msg: String
+    },
+    methods: {
+        submit() {
+            console.log('data Submited sucessfully.....');
+            console.log('post data:',this.post);
         }
     }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    h3 {
-        margin: 40px 0 0;
-    }
+.hello {
+    /* border: 3px solid red; */
+}
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+.main {
+    /* width: 95%; */
+    padding: 18px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+/* Image styles */
+.container {
+    position: relative;
+}
+.image {
+    display: block;
+    width: 100%;
+    /* height: auto; */
+}
 
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* height: 100%; */
+    width: 100%;
+    opacity: 0;
+    transition: 3.5s ease;
+    background-color: transparent;
+}
 
-    a {
-        color: #42b983;
-    }
+.container:hover .overlay {
+    opacity: 1;
+}
+
+.text {
+    color: rgb(19, 18, 18);
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+button {
+    color: rgb(255, 9, 9);
+    padding: 12px;
+}
 </style>
