@@ -57,10 +57,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello {
-    /* border: 3px solid red; */
-}
-
 .main {
     /* width: 95%; */
     padding: 18px 20px;

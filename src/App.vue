@@ -16,10 +16,6 @@
                 {{ $t(entry.title) }}
             </button>
         </div>
-
-
-
-        <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
         <HelloWorld />
     </div>
 </template>
@@ -40,19 +36,13 @@ export default {
             languages: [
                 { language: 'en', title: 'English' },
                 { language: 'es', title: 'japanese' }
-            ],
-            // currentForm: { ideaCode: 'en', title: 'English' }
+            ]
         };
     },
     methods: {
         changeLocale(locale) {
             i18n.locale = locale;
-        },
-        // setCodeAndLabelForForm(selectedIndex) {
-        //     var selectedIdea = this.ideas[selectedIndex];
-        //     this.currentForm = { ideaCode: selectedIdea.language, text: selectedIdea.title };
-        //     console.log(currentForm.ideaCode);
-        // }
+        }
     }
 }
 </script>
@@ -64,7 +54,6 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #171e25;
-    /* background-color: rgb(209, 206, 168); */
 }
 
 button {
@@ -78,6 +67,5 @@ button {
 .main {
     top: 0px;
     position: sticky;
-    /* float: right; */
 }
 </style>
